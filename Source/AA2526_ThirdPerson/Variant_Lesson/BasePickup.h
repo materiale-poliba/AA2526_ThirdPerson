@@ -29,6 +29,9 @@ protected:
 	UPROPERTY(BlueprintReadOnly, VisibleAnywhere)
 	UStaticMeshComponent* MeshComp;
 
+	UPROPERTY(EditAnywhere, Category="Pickup")
+	bool bDestroyOnPickup;
+	
 public:
 	// Sets up components and overlap wiring.
 	ABasePickup();
@@ -53,6 +56,9 @@ public:
 	UFUNCTION(BlueprintImplementableEvent)
 	void HandlePickup();
 
+	UFUNCTION(BlueprintImplementableEvent)
+	void HandleDestruction();
+	
 protected:
 	// Standard Unreal lifecycle entry point.
 	virtual void BeginPlay() override;

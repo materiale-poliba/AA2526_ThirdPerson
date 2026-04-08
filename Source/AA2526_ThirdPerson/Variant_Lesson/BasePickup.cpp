@@ -39,13 +39,15 @@ void ABasePickup::HandlePickupDelegate(UPrimitiveComponent* OverlappedComponent,
 	UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	UE_LOG(LogTemp, Log, TEXT("Pickup overlapped by %s"), *OtherActor->GetName());
-
-	// TODO: Validate overlap before granting pickup, e.g.:
-	// - OtherActor is valid and is the expected character/pawn type
-	// - pickup is still available (not already consumed)
-	//
-	// If validation passes, execute the actual pickup behavior.
+	
+	if (!OtherActor->ActorHasTag(FName("Player"))) return;
+	
 	HandlePickup();
+	
+	if (bDestroyOnPickup)
+	{
+		HandleDestruction();
+	}
 }
 
 void ABasePickup::BeginPlay()
