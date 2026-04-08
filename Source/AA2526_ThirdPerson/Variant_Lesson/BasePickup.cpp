@@ -43,7 +43,6 @@ void ABasePickup::HandlePickupDelegate(UPrimitiveComponent* OverlappedComponent,
 	// TODO: Validate overlap before granting pickup, e.g.:
 	// - OtherActor is valid and is the expected character/pawn type
 	// - pickup is still available (not already consumed)
-	// - optional authority check for multiplayer (HasAuthority / server-side logic)
 	//
 	// If validation passes, execute the actual pickup behavior.
 	HandlePickup();
